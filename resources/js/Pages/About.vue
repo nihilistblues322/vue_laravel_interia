@@ -1,9 +1,8 @@
 <template>
     <Head>
-        <title>Home</title>
+        <title>About</title>
     </Head>
-
-    <div>hello</div>
+    <div>About</div>
 </template>
 
 <script setup>

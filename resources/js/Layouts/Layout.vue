@@ -1,10 +1,11 @@
 <template>
+  
     <div>
         <header class="bg-slate-400 text-white">
             <nav class="flex items-center justify-between p-4 mx-auto">
                 <div class="space-x-4">
-                    <a href="/">Home</a>
-                    <a href="/about">About</a>
+                    <Link href="/">Home</Link>
+                    <Link href="/about">About</Link>
                 </div>
             </nav>
         </header>
@@ -14,4 +15,6 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { Link, Head } from "@inertiajs/vue3";
+</script>
