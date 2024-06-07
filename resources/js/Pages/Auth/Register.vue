@@ -9,18 +9,21 @@
                 <label for="">
                     Name
                     <input type="text" v-model="form.name" />
+                    <small>{{ form.errors.name }}</small>
                 </label>
             </div>
             <div class="mb-6">
                 <label for="">
                     Email
                     <input type="text" v-model="form.email" />
+                    <small>{{ form.errors.email }}</small>
                 </label>
             </div>
             <div class="mb-6">
                 <label for="">
                     Password
                     <input type="password" v-model="form.password" />
+                    <small>{{ form.errors.password }}</small>
                 </label>
             </div>
             <div class="mb-6">
@@ -36,16 +39,18 @@
                 <p class="text-slate-600 mb-2">
                     Already a user? <a href="#" class="text-link">Login</a>
                 </p>
-                <button class="primary-btn">Register</button>
+                <button class="primary-btn" :disabled="form.processing">
+                    Register
+                </button>
             </div>
         </form>
     </div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { useForm } from "@inertiajs/vue3";
 
-const form = reactive({
+const form = useForm({
     name: null,
     email: null,
     password: null,
@@ -53,7 +58,11 @@ const form = reactive({
 });
 
 const submit = () => {
-    console.log(form);
+    form.post(route("register"), {
+        onError: () => {
+            form.reset("password", "password_confirmation");
+        },
+    });
 };
 </script>
 
